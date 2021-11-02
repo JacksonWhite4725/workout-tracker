@@ -9,8 +9,7 @@ router.get('/api/workouts', (req, res) => {
             totalDuration: {
                 $sum: '$exercises.duration' 
             } 
-        } 
-    }
+        }},
     ]).then(workoutdb => {
         res.json(workoutdb)
     }).catch(err => {
