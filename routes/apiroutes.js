@@ -28,4 +28,15 @@ router.post('/api/workouts', (req, res) => {
     });
 });
 
+// Update (PUT) Specific Workouts
+router.put('/api/workouts/:id', (req, res) => {
+    Workout.findByIdAndUpdate(req.params.id, { $push: {
+        exercises: req.body
+    }}).then(workoutdb => {
+        res.json(workoutdb);
+    }).catch(err => {
+        res.status(400).json(err);
+    });
+});
+
 module.exports = router;
